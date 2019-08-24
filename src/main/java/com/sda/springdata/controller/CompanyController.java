@@ -3,12 +3,13 @@ package com.sda.springdata.controller;
 import com.sda.springdata.domain.Company;
 import com.sda.springdata.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyController {
+public class CompanyController{
 
     private final CompanyRepository companyRepository;
 
@@ -28,4 +29,10 @@ public class CompanyController {
     public String helloCompany(){
         return "Hello Timur!";
     }
+
+    @GetMapping(value = "/{id}")
+    public Optional<Company> findById(@PathVariable Long id){
+        return companyRepository.findById(id);
+    }
+
 }
