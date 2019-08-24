@@ -4,11 +4,10 @@ import com.sda.springdata.domain.Company;
 import com.sda.springdata.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("company/")
+@RestController
+@RequestMapping("/company")
 public class CompanyController {
 
     private final CompanyRepository companyRepository;
@@ -19,8 +18,14 @@ public class CompanyController {
     }
 
 
-    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @PostMapping(value = "/add")
     public Company addCompany(Company company){
+
        return companyRepository.save(company);
+    }
+
+    @GetMapping(value = "/")
+    public String helloCompany(){
+        return "Hello Timur!";
     }
 }
