@@ -19,7 +19,7 @@ public class CompanyController {
 
 
     @PostMapping(value = "/add")
-    public Company addCompany(Company company){
+    public Company addCompany(@RequestBody Company company){
 
        return companyRepository.save(company);
     }
